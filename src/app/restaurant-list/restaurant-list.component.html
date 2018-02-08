@@ -1,0 +1,56 @@
+<div class="card card-danger">
+    <div class="card-heading">
+    {{pageTitle}}
+    </div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-2"> filter by: </div>
+        <div class="col-md-4"> 
+            <input type="text" [(ngModel)]='listFile'/>
+        </div>
+    </div>
+    <div class="row">
+<div class="col-md-6"> 
+    <h3>Filtered By : </h3>
+</div>
+    </div>
+    <div class="table-responsive">
+        <table class="table" *ngIf='resturant && resturant.length' >
+            <thead>
+                <tr>
+                    <th>
+                        <button class="btn btn-primary" (click)="ToggleImage()"> {{(ShowImage? 'Hide':'Show')}}
+                        </button>
+                    </th>
+                    <th> Title </th>
+                    <th> City </th>
+                    <th> State </th>
+                    <th> 5 Star Rank </th>
+                </tr></thead>
+                 <tbody>
+                <tr *ngFor='let rest of resturant | resturantFilter :listFile'>
+                   <!-- <td><img src={{rest.imageUrl}}/></td>-->
+                    <td><img *ngIf='ShowImage' [src]='rest.imageUrl'
+                    style.width.px={{100}}
+                    style.margin.px={{2}}
+                    title={{rest.restaurantTitle}}/></td>
+                    <td class="temp">{{rest.restaurantTitle | uppercase}}</td>
+                    <td>{{rest.restaurantCity}}</td>
+                    <td>{{rest.restaurantState}}</td>
+                   <!-- <td [ngClass]="{'temp':rest.starRating>4}">{{rest.starRating}}</td>-->
+                    <td [ngStyle]="{'color':rest.starRating < 4 ? 'red' : 'Blue'}">
+                        <cs-star-rating rating={{rest.starRating}}></cs-star-rating>
+                    </td>
+                   <!-- <td [ngStyle]="{'color':rest.starRating < 4 ? 'red' : 'Blue'}">{{rest.starRating}}</td>     
+                    -->
+                    </tr>
+            
+           
+                        </tbody>
+
+        </table>
+        {{resturant | json}}
+        {{listFile}}
+    </div>
+</div>
+</div>

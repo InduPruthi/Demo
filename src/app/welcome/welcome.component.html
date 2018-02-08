@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <h1>
+   Lead Management System
+  </h1>
+  <img width="300" alt="Lead Logo" src="../src/assets/Images/leadmanagment.jpeg">
+</div>
+
+<ul >
+  <li *ngIf="buttonshow">
+   <button   (click)="btnSignUpshow()" >SignUp</button>
+  </li>
+  <li *ngIf="buttonshow">
+   <button  (click)="btnLoginshow()">LogIn</button>
+  </li>
+</ul>
+ <div *ngIf="Loginshow">
+  Login
+  <input type="button" value="LogIn"  [routerLink]="['/home','Indu']"/>
+ </div>
+ <div *ngIf="SignUpshow">
+  SignUp
+ </div>
